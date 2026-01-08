@@ -47,7 +47,9 @@ count_commits() {
 # Generate today's log
 generate_log() {
     local total_commits=0
+    local active_projects=0
     local commit_section=""
+    local project_list=""
 
     while IFS= read -r repo; do
         local repo_name=$(basename "$repo")
@@ -55,6 +57,8 @@ generate_log() {
 
         if [ "$commit_count" -gt 0 ]; then
             total_commits=$((total_commits + commit_count))
+            active_projects=$((active_projects + 1))
+            project_list+="$repo_name, "
             commit_section+="### $repo_name ($commit_count)\n"
 
             while IFS='|' read -r hash msg; do
@@ -66,15 +70,34 @@ generate_log() {
         fi
     done <<< "$(find_repos)"
 
+    # Remove trailing comma from project list
+    project_list=${project_list%, }
+
     # Create fresh WORK_LOGS
     cat > "$WORK_LOGS" << EOF
 # WORK LOG - $TODAY
+
+## Today's Summary
+- $total_commits commits across $active_projects projects
+- (Claude fills this at end of session)
+
+---
 
 ## Commits ($total_commits)
 
 $(echo -e "$commit_section")
 ## Progress
 
+
+---
+
+## Stats
+
+| Metric | Value |
+|--------|-------|
+| Commits | $total_commits |
+| Projects | $active_projects |
+| Repos | $project_list |
 EOF
 
     echo "Generated WORK_LOGS for $TODAY ($total_commits commits)"
