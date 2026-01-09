@@ -12,8 +12,18 @@ if [ -z "$1" ]; then
 fi
 
 MESSAGE="$*"
+ENTRY="- **$TIME** $MESSAGE"
 
-# Append to Progress section
-echo "- **$TIME** $MESSAGE" >> "$WORK_LOGS"
+# Insert into Progress section (before the "---" after Progress)
+if grep -q "^## Progress" "$WORK_LOGS"; then
+    sed -i "/^## Progress/,/^---/{
+        /^---/i\\
+$ENTRY\\
+
+    }" "$WORK_LOGS"
+else
+    # Fallback: append to end if no Progress section
+    echo "$ENTRY" >> "$WORK_LOGS"
+fi
 
 echo "Logged: $MESSAGE"
