@@ -24,9 +24,13 @@ if [ -f "$WORK_LOGS" ]; then
     fi
 fi
 
-# Find all git repos in VIBECODING
+# Find all git repos in VIBECODING and PRACA
+PRACA_DIR="/home/adam-koszalka/ŻYCIE/PRACA"
 find_repos() {
-    find "$VIBECODING_DIR" -maxdepth 3 -type d -name ".git" 2>/dev/null | sed 's/\/.git$//'
+    {
+        find "$VIBECODING_DIR" -maxdepth 3 -type d -name ".git" 2>/dev/null
+        find "$PRACA_DIR" -maxdepth 3 -type d -name ".git" 2>/dev/null
+    } | sed 's/\/.git$//'
 }
 
 # Get commits for today
