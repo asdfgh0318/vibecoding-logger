@@ -1,0 +1,33 @@
+# WORK LOG - 2026-02-14
+
+## Today's Summary
+- 3 commits across 3 projects
+- Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
+
+---
+
+## Commits (3)
+
+### ŻYCIE (1)
+- [0aaec73] Organize repo: sort loose files into topic folders
+
+### AI_TOOLS (1)
+- [a7a4ddd] Initial commit: README and ai-uni skill docs
+
+### bikepacking-planner (2)
+- [a9a147e] Build full MVP: route planner with InPost + shop overlays
+- [ba0171e] Initial project plan for bikepacking supply planner
+
+## Progress
+
+- **18:30** Browsed entire ŻYCIE repo (~37k files, 7.8GB), checked all images visually. Organized PRACA/ images into 5 topic subfolders (norsonic_equipment, drone_noise_measurement, robotics_research, connectors_cad, handwritten_notes). Created DOKUMENTY/ and CHEATSHEETS/ folders. Moved misplaced files (RPi image from MUSIC, emacs config to dotfiles, STUDIA.org into STUDIA/). Removed Windows artifacts (desktop.ini, System Volume Information, TeamViewer installers). Updated .gitignore. Pushed to origin.
+
+---
+
+## Stats
+
+| Metric | Value |
+|--------|-------|
+| Commits | 3 |
+| Projects | 3 |
+| Repos | ŻYCIE, AI_TOOLS, bikepacking-planner |
