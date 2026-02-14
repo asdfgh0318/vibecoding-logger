@@ -1,8 +1,9 @@
 # WORK LOG - 2026-02-14
 
 ## Today's Summary
-- 3 commits across 3 projects
+- 7 commits across 3 projects
 - Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
+- bikepacking-planner: created GitHub repo & pushed all 6 commits
 
 ---
 
@@ -14,13 +15,18 @@
 ### AI_TOOLS (1)
 - [a7a4ddd] Initial commit: README and ai-uni skill docs
 
-### bikepacking-planner (2)
+### bikepacking-planner (6)
+- [8ca6d74] Add campsites overlay, route saving/sharing, and PWA offline mode
+- [57dfbc9] Add day splitting, GPX export, and water sources overlay
+- [2fe072b] Add diet-based supply planner and Bangle.js 2 watch companion app
+- [d9e7a27] Redesign UI: Komoot-inspired with pixel-perfect sizing
 - [a9a147e] Build full MVP: route planner with InPost + shop overlays
 - [ba0171e] Initial project plan for bikepacking supply planner
 
 ## Progress
 
 - **18:30** Browsed entire ŻYCIE repo (~37k files, 7.8GB), checked all images visually. Organized PRACA/ images into 5 topic subfolders (norsonic_equipment, drone_noise_measurement, robotics_research, connectors_cad, handwritten_notes). Created DOKUMENTY/ and CHEATSHEETS/ folders. Moved misplaced files (RPi image from MUSIC, emacs config to dotfiles, STUDIA.org into STUDIA/). Removed Windows artifacts (desktop.ini, System Volume Information, TeamViewer installers). Updated .gitignore. Pushed to origin.
+- **19:15** Created GitHub repo for bikepacking-planner (private), pushed all 6 commits.
 
 ---
 
@@ -28,6 +34,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 3 |
+| Commits | 7 |
 | Projects | 3 |
 | Repos | ŻYCIE, AI_TOOLS, bikepacking-planner |
