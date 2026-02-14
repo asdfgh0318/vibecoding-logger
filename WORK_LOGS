@@ -1,21 +1,29 @@
 # WORK LOG - 2026-02-14
 
 ## Today's Summary
-- 7 commits across 3 projects
+- 13 commits across 3 projects
 - Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
-- bikepacking-planner: created GitHub repo & pushed all 6 commits
+- bikepacking-planner: created GitHub repo & pushed all 8 commits
+- Built Feynman Technique learning app: generic CLI tool for any PDF, built-in chapter reader, TUI with progress tracking
+- Generated printable PDF workbook from the app's book data
 
 ---
 
-## Commits (3)
+## Commits (13)
 
-### ŻYCIE (1)
+### ŻYCIE/LITERATURA (5)
+- [63196df] Add PDF workbook generator and Calculus Made Easy workbook
+- [1e99bcd] Add quick start manual for feynman app
+- [6b25ded] Add README for feynman learning app
+- [2713819] Add Feynman Technique learning app with built-in chapter reader
 - [0aaec73] Organize repo: sort loose files into topic folders
 
 ### AI_TOOLS (1)
 - [a7a4ddd] Initial commit: README and ai-uni skill docs
 
-### bikepacking-planner (6)
+### bikepacking-planner (8)
+- [cad7bc5] Add routing profile selector, gear/weight calculator, and printable shopping list
+- [bb22798] Add ride time/difficulty estimates, bike repair shops, and offline route packages
 - [8ca6d74] Add campsites overlay, route saving/sharing, and PWA offline mode
 - [57dfbc9] Add day splitting, GPX export, and water sources overlay
 - [2fe072b] Add diet-based supply planner and Bangle.js 2 watch companion app
@@ -27,6 +35,7 @@
 
 - **18:30** Browsed entire ŻYCIE repo (~37k files, 7.8GB), checked all images visually. Organized PRACA/ images into 5 topic subfolders (norsonic_equipment, drone_noise_measurement, robotics_research, connectors_cad, handwritten_notes). Created DOKUMENTY/ and CHEATSHEETS/ folders. Moved misplaced files (RPi image from MUSIC, emacs config to dotfiles, STUDIA.org into STUDIA/). Removed Windows artifacts (desktop.ini, System Volume Information, TeamViewer installers). Updated .gitignore. Pushed to origin.
 - **19:15** Created GitHub repo for bikepacking-planner (private), pushed all 6 commits.
+- **19:56** Built Feynman Technique learning app (`feynman_calculus/feynman`): generic CLI tool that auto-extracts chapters from any PDF, guides through 4-step Feynman method with built-in paginated chapter reader, progress tracking, TUI with progress bars/breadcrumbs. Added prologue detection, title-case chapter names. Created workbook.py to generate printable PDF workbook with terminal-style panels and ruled writing lines. Generated full 22-chapter Calculus Made Easy workbook (515KB). Added README and manual. 4 commits pushed.
 
 ---
 
@@ -34,6 +43,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 7 |
+| Commits | 13 |
 | Projects | 3 |
-| Repos | ŻYCIE, AI_TOOLS, bikepacking-planner |
+| Repos | ŻYCIE/LITERATURA, AI_TOOLS, bikepacking-planner |
