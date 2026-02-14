@@ -1,7 +1,7 @@
 # WORK LOG - 2026-02-14
 
 ## Today's Summary
-- 13 commits across 3 projects
+- 15 commits across 3 projects
 - Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
 - bikepacking-planner: created GitHub repo & pushed all 8 commits
 - Built Feynman Technique learning app: generic CLI tool for any PDF, built-in chapter reader, TUI with progress tracking
@@ -9,9 +9,10 @@
 
 ---
 
-## Commits (13)
+## Commits (15)
 
-### ŻYCIE/LITERATURA (5)
+### ŻYCIE (7)
+- [ceff5f6] Add previously untracked directories and files
 - [63196df] Add PDF workbook generator and Calculus Made Easy workbook
 - [1e99bcd] Add quick start manual for feynman app
 - [6b25ded] Add README for feynman learning app
@@ -35,6 +36,7 @@
 
 - **18:30** Browsed entire ŻYCIE repo (~37k files, 7.8GB), checked all images visually. Organized PRACA/ images into 5 topic subfolders (norsonic_equipment, drone_noise_measurement, robotics_research, connectors_cad, handwritten_notes). Created DOKUMENTY/ and CHEATSHEETS/ folders. Moved misplaced files (RPi image from MUSIC, emacs config to dotfiles, STUDIA.org into STUDIA/). Removed Windows artifacts (desktop.ini, System Volume Information, TeamViewer installers). Updated .gitignore. Pushed to origin.
 - **19:15** Created GitHub repo for bikepacking-planner (private), pushed all 6 commits.
+- **20:15** Added all previously untracked dirs to ŻYCIE repo: LITERATURA/feynman_calculus, MISSION_PLANNER, VIBECODING files. Added 3 nested repos (AI_TOOLS, bikepacking-planner, vlad-project) to .gitignore. Pushed.
 - **19:56** Built Feynman Technique learning app (`feynman_calculus/feynman`): generic CLI tool that auto-extracts chapters from any PDF, guides through 4-step Feynman method with built-in paginated chapter reader, progress tracking, TUI with progress bars/breadcrumbs. Added prologue detection, title-case chapter names. Created workbook.py to generate printable PDF workbook with terminal-style panels and ruled writing lines. Generated full 22-chapter Calculus Made Easy workbook (515KB). Added README and manual. 4 commits pushed.
 
 ---
@@ -43,6 +45,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 13 |
+| Commits | 15 |
 | Projects | 3 |
 | Repos | ŻYCIE/LITERATURA, AI_TOOLS, bikepacking-planner |
