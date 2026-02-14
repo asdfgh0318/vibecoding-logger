@@ -1,17 +1,22 @@
 # WORK LOG - 2026-02-14
 
 ## Today's Summary
-- 17 commits across 3 projects
+- 22 commits across 5 projects
 - Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
-- bikepacking-planner: created GitHub repo & pushed all 8 commits
+- bikepacking-planner: created GitHub repo & pushed all commits, improved UI and error handling
 - Built Feynman Technique learning app: generic CLI tool for any PDF, built-in chapter reader, TUI with progress tracking
 - Generated printable PDF workbook with cheatsheets, tips, and QR-coded resource links
+- Added LaTeX formula rendering and original PDF page images to workbook
+- Added book library view, interactive reader navigation, and configurable sections to feynman app
+- Built complete software foundation for multi-band radio telescope (space-station)
 
 ---
 
-## Commits (17)
+## Commits (22)
 
-### ŻYCIE (9)
+### ŻYCIE (11)
+- [9c45635] Add book library view, interactive reader navigation, and configurable sections
+- [fdbbf85] Add LaTeX formula rendering and original PDF page images to workbook
 - [b4d3018] Skip prologue in workbook, add skip flag support
 - [2f7dcfe] Add cheatsheets, tips, and QR-coded resources to workbook
 - [ceff5f6] Add previously untracked directories and files
@@ -24,7 +29,9 @@
 ### AI_TOOLS (1)
 - [a7a4ddd] Initial commit: README and ai-uni skill docs
 
-### bikepacking-planner (8)
+### bikepacking-planner (10)
+- [9be3a71] Fix BRouter error handling and add crosshair cursor on map
+- [6dcb16f] Improve UI: lucide-react icons, sonner toasts, reusable components, a11y
 - [cad7bc5] Add routing profile selector, gear/weight calculator, and printable shopping list
 - [bb22798] Add ride time/difficulty estimates, bike repair shops, and offline route packages
 - [8ca6d74] Add campsites overlay, route saving/sharing, and PWA offline mode
@@ -34,6 +41,9 @@
 - [a9a147e] Build full MVP: route planner with InPost + shop overlays
 - [ba0171e] Initial project plan for bikepacking supply planner
 
+### space-station (1)
+- [f690fcf] Add complete software foundation for multi-band radio telescope
+
 ## Progress
 
 - **18:30** Browsed entire ŻYCIE repo (~37k files, 7.8GB), checked all images visually. Organized PRACA/ images into 5 topic subfolders (norsonic_equipment, drone_noise_measurement, robotics_research, connectors_cad, handwritten_notes). Created DOKUMENTY/ and CHEATSHEETS/ folders. Moved misplaced files (RPi image from MUSIC, emacs config to dotfiles, STUDIA.org into STUDIA/). Removed Windows artifacts (desktop.ini, System Volume Information, TeamViewer installers). Updated .gitignore. Pushed to origin.
@@ -41,6 +51,8 @@
 - **20:15** Added all previously untracked dirs to ŻYCIE repo: LITERATURA/feynman_calculus, MISSION_PLANNER, VIBECODING files. Added 3 nested repos (AI_TOOLS, bikepacking-planner, vlad-project) to .gitignore. Pushed.
 - **19:56** Built Feynman Technique learning app (`feynman_calculus/feynman`): generic CLI tool that auto-extracts chapters from any PDF, guides through 4-step Feynman method with built-in paginated chapter reader, progress tracking, TUI with progress bars/breadcrumbs. Added prologue detection, title-case chapter names. Created workbook.py to generate printable PDF workbook with terminal-style panels and ruled writing lines. Generated full 22-chapter Calculus Made Easy workbook (515KB). Added README and manual. 4 commits pushed.
 - **20:30** Added supplements system to workbook: created supplements.json with per-chapter formula cheatsheets, tips & common mistakes, and QR codes linking to 3Blue1Brown, Khan Academy, and Wikipedia for all 22 chapters. Added skip flag to exclude prologue from workbook. Regenerated full workbook (610KB, 21 chapters). 2 commits pushed.
+- **21:06** Added LaTeX formula rendering to workbook cheatsheets using matplotlib mathtext. Converted all 21 chapters' formulas from ASCII to LaTeX (proper fractions, integrals, Greek letters, superscripts). Redesigned cheatsheet rendering to interleave text and LaTeX images. Replaced chapter content text extraction with embedded original PDF page images via pymupdf -- preserves all original typesetting (fractions, tables, diagrams). Full workbook regenerated (32MB, 308 pages). 1 commit pushed.
+- **22:15** Improved feynman CLI app: added book library view (Rich table with progress bars and relative timestamps), interactive reader navigation (back/forward/jump/quit), configurable section sizes via config.json or env var, argparse CLI (`feynman` = library, `feynman -l` = resume, `feynman path.pdf` = new book). Removed hardcoded book title from text cleaner. Updated README and MANUAL. 1 commit pushed.
 
 ---
 
@@ -48,6 +60,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 17 |
-| Projects | 3 |
-| Repos | ŻYCIE/LITERATURA, AI_TOOLS, bikepacking-planner |
+| Commits | 22 |
+| Projects | 5 |
+| Repos | ŻYCIE/LITERATURA, AI_TOOLS, bikepacking-planner, space-station, vibecoding-logger |
