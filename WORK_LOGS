@@ -1,17 +1,19 @@
 # WORK LOG - 2026-02-14
 
 ## Today's Summary
-- 15 commits across 3 projects
+- 17 commits across 3 projects
 - Organized ŻYCIE repo: sorted 56 loose files into topic folders, cleaned up junk
 - bikepacking-planner: created GitHub repo & pushed all 8 commits
 - Built Feynman Technique learning app: generic CLI tool for any PDF, built-in chapter reader, TUI with progress tracking
-- Generated printable PDF workbook from the app's book data
+- Generated printable PDF workbook with cheatsheets, tips, and QR-coded resource links
 
 ---
 
-## Commits (15)
+## Commits (17)
 
-### ŻYCIE (7)
+### ŻYCIE (9)
+- [b4d3018] Skip prologue in workbook, add skip flag support
+- [2f7dcfe] Add cheatsheets, tips, and QR-coded resources to workbook
 - [ceff5f6] Add previously untracked directories and files
 - [63196df] Add PDF workbook generator and Calculus Made Easy workbook
 - [1e99bcd] Add quick start manual for feynman app
@@ -38,6 +40,7 @@
 - **19:15** Created GitHub repo for bikepacking-planner (private), pushed all 6 commits.
 - **20:15** Added all previously untracked dirs to ŻYCIE repo: LITERATURA/feynman_calculus, MISSION_PLANNER, VIBECODING files. Added 3 nested repos (AI_TOOLS, bikepacking-planner, vlad-project) to .gitignore. Pushed.
 - **19:56** Built Feynman Technique learning app (`feynman_calculus/feynman`): generic CLI tool that auto-extracts chapters from any PDF, guides through 4-step Feynman method with built-in paginated chapter reader, progress tracking, TUI with progress bars/breadcrumbs. Added prologue detection, title-case chapter names. Created workbook.py to generate printable PDF workbook with terminal-style panels and ruled writing lines. Generated full 22-chapter Calculus Made Easy workbook (515KB). Added README and manual. 4 commits pushed.
+- **20:30** Added supplements system to workbook: created supplements.json with per-chapter formula cheatsheets, tips & common mistakes, and QR codes linking to 3Blue1Brown, Khan Academy, and Wikipedia for all 22 chapters. Added skip flag to exclude prologue from workbook. Regenerated full workbook (610KB, 21 chapters). 2 commits pushed.
 
 ---
 
@@ -45,6 +48,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 15 |
+| Commits | 17 |
 | Projects | 3 |
 | Repos | ŻYCIE/LITERATURA, AI_TOOLS, bikepacking-planner |
