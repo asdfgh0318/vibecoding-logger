@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.svg" alt="vibecoding-logger banner" width="100%">
+</p>
+
 # Vibecoding Logger
 
 A dead-simple work logging system for tracking daily coding progress with Claude Code.
