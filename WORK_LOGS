@@ -1,7 +1,13 @@
 # WORK LOG - 2026-08-28
 
 ## Today's Summary
-- 3 commits across 1 project
+- 19 commits across 3 projects
+- Ran the full dp1 parcel-drone material campaign on the rig: baseline + felt,
+  rubber, felt+rubber and cork, 60 measurements each with all 11 mics. Most of
+  the session went on getting the rig and the tooling honest enough to trust
+  the data — a dead mic binding, two label bugs, a node-picker that silently
+  stored captures under the previous material's key, and four runs' worth of
+  keys written with a typo'd motor field.
 - Built `go-layout`: type `go` in a terminal and sway lays out the whole desk —
   two ranger panes stacked at 40% on the left, brave filling the right, beeper
   parked in the scratchpad. Most of the day went on making the placement
@@ -9,7 +15,27 @@
 
 ---
 
-## Commits (3)
+## Commits (19)
+
+### SoundVisualizer (6)
+- [6865522] Capture wizard: default to the dp1 five-step ramp at 200 ms per take
+- [6775167] Capture wizard: 2000 ms per take, not 200
+- [bb7784b] Docs: correct the Pi overlay procedure; research trees now on the data partition
+- [b5c1c7c] Results: include notes in compare-series labels
+- [440b36b] Results: notes in the compare-config dropdown too
+- [4e1c644] Wizard: switching research-tree node updates shroud/notes
+
+### drone-paczek-research-tree (10)
+- [8157f6b] dp1: add felt, rubber, felt+rubber and cork material tests
+- [193aab1] dp1: dated baseline for the 2026-08-28 session
+- [3c8ea15] dp1: mark the July sets done and link them to their Results pages
+- [430a0f2] dp1: felt+rubber is a sibling treatment, not a child of felt and rubber
+- [89a2b6f] dp1: 2026-08-28 baseline is its own root, parallel to the July one
+- [8d91681] dp1: give the tree the eval/synthesis shape the duct tree uses
+- [0d726bd] dp1: strictly layered graph so edges stop crossing
+- [0f82fcf] dp1: baseline and cork captured 2026-08-28
+- [5cd2d22] dp1: felt captured 2026-08-28
+- [c1b4f92] dp1: rubber and felt+rubber captured — 2026-08-28 set complete
 
 ### go-layout (3)
 - [d63efa2] go-layout: one-command sway working layout
@@ -53,12 +79,59 @@
   independently: parked in the scratchpad at 1200x800 either way, no loose
   window on any workspace.
 
+- **15:00** SoundVisualizer session begins. Tyto moved to the Pi; enabled it in
+  `config.toml` on the stable by-id path and copied the corrected
+  `cal_thrust = -1.0019910071` across from the documented value. Mics came up
+  10 of 11 — the missing one was absent at USB level, the documented
+  power-but-not-data USB-C symptom. Reseated, then found SoundVis still showed
+  10: PortAudio enumerates once at startup, so the server needed a restart.
+- **15:20** Pi overlay work. Both research trees lived on the overlay rootfs,
+  so every tree edit was silently lost on reboot — moved to
+  `/home/pi/data/research-trees/` and symlinked, matching how measurements and
+  config.toml already work. Verified across a full reboot cycle.
+  `raspi-config nonint do_overlayfs` turned out to be a **no-op on this Pi**:
+  it drives an initramfs `boot=overlay` mechanism while the machine runs the
+  overlayroot package off the kernel cmdline. It exits 0 and changes nothing.
+  CLAUDE.md corrected — the real toggle is a sed on
+  `/boot/firmware/cmdline.txt`, and `:recurse=0` must never be dropped.
+- **15:35** Mic d unbindable. The preset wanted port paths `1-1.2` and `1-1.3`
+  that the udev rules no longer covered (regenerated once while two mics were
+  unplugged). Regenerated the rules, which fixed mic c; mic d had physically
+  moved to `3-1.1`, confirmed by the serial printed on the mic body (8112310)
+  before re-binding, since every UMIK-2 reports USB serial `00000` and software
+  cannot tell them apart. Also found `MicList`'s reconcile effect wipes
+  `deviceIndex` on every render when the row's `alsaCardId` is stale, so
+  re-picking the device was the only escape.
+- **16:00** Baseline captured twice before it was right: first run had a dead
+  motor (ESC never armed — current ~0 A at every step, caught by comparing
+  telemetry across runs), second was missing mic d. Third run clean.
+- **16:15** Overlay labels: two series rendered identically as "6in · 2000µs"
+  because the label was built from propeller + shroud only and ignored `notes`,
+  which is the only field distinguishing two baselines of the same motor and
+  prop. Fixed — then found the compare-config dropdown builds its own label
+  independently and needed the same fix.
+- **16:30** The expensive bug: `ResearchTreeNodePicker` only autofilled *empty*
+  fields, so switching to a different node left the previous node's shroud and
+  notes in place — and since the key is `motor__propeller__shroud__notes`, the
+  felt capture was stored under the cork key. Only caught by reading the stored
+  data. Now a field is replaced when it is empty **or** still equal to what the
+  previously picked node put there; hand-typed values are still left alone.
+- **17:00** All four material runs also landed under a typo'd `f2004` motor —
+  a free-text field the picker never touches. Renamed each key in place
+  (directory + `key.json`) rather than re-running the motor.
+- **18:39** Campaign complete. Data pushed to `SoundVisualizer-data` @
+  `acb4016`, 10 keys, 0 unpushed. Research tree updated with links and
+  statuses. Issue #10 filed for Paweł to upload the set to the server. Pi
+  powered down cleanly.
+
 ---
 
 ## Stats
 
 | Metric | Value |
 |--------|-------|
-| Commits | 3 |
-| Projects | 1 |
-| Repos | go-layout |
+| Commits | 19 |
+| Projects | 3 |
+| Repos | SoundVisualizer, drone-paczek-research-tree, go-layout |
+| Measurements captured | 300 (5 sets × 60) |
+| Data commit | SoundVisualizer-data @ acb4016 |
