@@ -1,28 +1,57 @@
-# WORK LOG - 2026-02-23
+# WORK LOG - 2026-08-28
 
 ## Today's Summary
-- 7 commits across 2 projects
-- Added interactive tutorial wizard to GLB 3D viewer, sample mission files, doc updates, and fixed Home waypoint position in converter (aruco_drone_nav). Rewrote bootstrap script for Debian Trixie (space-station).
+- 3 commits across 1 project
+- Built `go-layout`: type `go` in a terminal and sway lays out the whole desk —
+  two ranger panes stacked at 40% on the left, brave filling the right, beeper
+  parked in the scratchpad. Most of the day went on making the placement
+  deterministic against three separate silent races.
 
 ---
 
-## Commits (7)
+## Commits (3)
 
-### aruco_drone_nav (6)
-- [01411cf] Fix Home waypoint to match takeoff position
-- [c776e2e] Update docs for viewer tutorial and sample files
-- [b135d81] Add sample mission files for viewer testing
-- [3b7427d] Add interactive tutorial wizard to GLB viewer
-- [e737208] Fix landing position and altitude for real flight use
-- [0a47427] Add GLB 3D viewer and fix waypoint converter for real flights
-
-### space-station (1)
-- [bd0c259] Rewrite bootstrap for Debian Trixie + lgpio, fix EL microstepping
+### go-layout (3)
+- [d63efa2] go-layout: one-command sway working layout
+- [3ae517c] Build on the lowest empty workspace by default
+- [fc359c8] Fix: go did nothing at all in a real terminal
 
 ## Progress
 
-- **15:30** Implemented 7-step tutorial wizard for GLB viewer (spotlight highlights, Back/Next/Skip, localStorage persistence, ? key replay). Added sample JSON/waypoints files to viewer/samples/. Updated README, CURRENT_PLAN, TODO, TECHNICAL docs.
-- **15:45** Fixed Home waypoint in vr_to_waypoints.py — was set to bare GPS origin, now matches takeoff/path start position. Mission Planner view confirmed correct.
+- **12:45** First working layout. Placement is done one window at a time —
+  each terminal spawned with its own `--app-id`, polled for in the sway tree,
+  then explicitly focused before splitting off the next. Brave is launched
+  into a throwaway holder pane and swapped into its slot once its window
+  appears, so its slow startup cannot scramble the tree.
+- **12:47** Bug: the 40/60 split kept coming out inverted. `focus` and
+  `resize` sent as two separate `swaymsg` calls are not atomic and brave
+  grabbed focus in between, so the resize hit the browser. All geometry
+  commands now carry `[con_id=…]` criteria instead of relying on focus.
+- **12:47** Self-inflicted: a runtime `for_window [class="…"]` rule for beeper
+  matched native Wayland windows (which have no X11 class) and vacuumed
+  workspace 1 into the scratchpad. Reverted, workspace restored to its exact
+  original tabbed layout, and the permanent rule in the sway config matches on
+  `app_id` only.
+- **12:49** Repo created at ~/ŻYCIE/VIBECODING/go-layout, pushed public.
+  ~/.local/bin/go-layout symlinked into it so edits are live.
+- **13:10** `--fresh` made the default: build on the lowest empty workspace
+  rather than always workspace 1, since on an occupied tabbed workspace the
+  whole layout nested itself into a single new tab. Surfaced two more bugs —
+  a second `go` latched onto the first run's `go-r1` (app_ids now tagged with
+  the run's PID), and brave activating an old window dragged focus back to
+  the wrong workspace (focus is now claimed last).
+- **13:30** `go` did nothing at all in a real terminal — three silent
+  failures stacked: `setsid -f` lost the race against the terminal closing
+  and was killed before executing a line; `swaymsg exec go-layout` found
+  nothing because sway's PATH has no ~/.local/bin, and reported success
+  anyway; and the closing terminal dragged focus back after the workspace
+  switch. Launcher now goes through sway with an absolute path, and the
+  script asserts the workspace switch and moves the anchor pane if sway put
+  it elsewhere. Logging switched to per-line append so a killed run leaves a
+  trace instead of vanishing.
+- **14:09** Verified beeper end to end, both launched by `go` and launched
+  independently: parked in the scratchpad at 1200x800 either way, no loose
+  window on any workspace.
 
 ---
 
@@ -30,6 +59,6 @@
 
 | Metric | Value |
 |--------|-------|
-| Commits | 7 |
-| Projects | 2 |
-| Repos | aruco_drone_nav, space-station |
+| Commits | 3 |
+| Projects | 1 |
+| Repos | go-layout |
